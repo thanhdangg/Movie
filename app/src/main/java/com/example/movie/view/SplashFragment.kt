@@ -77,7 +77,7 @@ class SplashFragment : FullScreenFragment(R.layout.fragment_splash) {
         // Setup RecyclerView
         val recyclerView: RecyclerView = binding.movieRecyclerView
         recyclerView.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
-        recyclerView.adapter = MovieAdapter(emptyList()) // Empty list for now
+        recyclerView.adapter = MovieAdapter(emptyList())
 
         // Navigate to MainFragment on button click
         binding.startButton.setOnClickListener {

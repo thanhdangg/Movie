@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Movie</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="Splash">Spash Frgament</string>
+    <string name="PRIVACY">PRIVACY ⋁ </string>
+    <string name="unlimited_movies">Unlimited\nentertainment</string>
+    <string name="All_of_Boatflix">All of Boatflix\n</string>
+    <string name="go">GO</string>
 </resources>

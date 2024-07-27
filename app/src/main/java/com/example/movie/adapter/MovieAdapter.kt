@@ -31,10 +31,9 @@ class MovieAdapter(private var movies: List<Movie>) : RecyclerView.Adapter<Movie
 
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movie: Movie) {
-//            itemView.movieTitle.text = movie.title
-//            itemView.movieOverview.text = movie.overview
             Glide.with(itemView.context)
-                .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
+                .load(movie.posterPath)
+//                .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
                 .into(itemView.findViewById(R.id.moviePoster))
         }
     }

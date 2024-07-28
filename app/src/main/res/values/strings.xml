@@ -8,4 +8,7 @@
     <string name="All_of_Boatflix">All of Boatflix\n</string>
     <string name="go">GO</string>
     <string name="Rectenly_Watched">Rectenly Watched</string>
+    <string name="popular">Popular</string>
+    <string name="see_all"><![CDATA[See all >]]></string>
+    <string name="today_pick">Todays pick</string>
 </resources>

@@ -31,13 +31,14 @@ class MovieRepository {
                 Movie(
                     id = it.id,
                     title = it.title,
-                    overview = it.overview,
                     posterPath = "https://image.tmdb.org/t/p/w500${it.posterPath}",
                     backdropPath = "https://image.tmdb.org/t/p/w500${it.posterPath}",
+                    overview = it.overview,
                     releaseDate = it.releaseDate,
                     voteAverage = it.voteAverage,
                     voteCount = it.voteCount,
-                    originalLanguage = it.originalLanguage
+                    originalLanguage = it.originalLanguage,
+                    popularity = it.popularity
                 )
             }
         } else {
@@ -60,5 +61,6 @@ data class MovieResult(
     @SerializedName("release_date") val releaseDate: String,
     @SerializedName("vote_average") val voteAverage: Double,
     @SerializedName("vote_count") val voteCount: Int,
-    @SerializedName("original_language") val originalLanguage: String
+    @SerializedName("original_language") val originalLanguage: String,
+    @SerializedName("popularity") val popularity: Double
 )

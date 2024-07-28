@@ -20,12 +20,9 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.movie.R
 import com.example.movie.adapter.MovieMainAdapter
 import com.example.movie.databinding.FragmentMainBinding
+import com.example.movie.model.Movie
 import com.example.movie.viewmodel.MovieViewModel
 
-/**
- * An example full-screen fragment that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- */
 class MainFragment : FullScreenFragment(R.layout.fragment_main) {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -47,7 +44,10 @@ class MainFragment : FullScreenFragment(R.layout.fragment_main) {
         // Fetch movies from the API
         movieViewModel.fetchMovies()
 
-        movieMainAdapter = MovieMainAdapter(listOf())
+//        movieMainAdapter = MovieMainAdapter(listOf())
+        movieMainAdapter = MovieMainAdapter(listOf()) { movie ->
+            openDetailFragment(movie)
+        }
 
         binding.popularMovies.adapter = movieMainAdapter
         binding.todayPickMovies.adapter = movieMainAdapter
@@ -55,11 +55,10 @@ class MainFragment : FullScreenFragment(R.layout.fragment_main) {
         movieViewModel.moviesLiveData.observe(viewLifecycleOwner, Observer { movies ->
 
             if (movies!= null) {
-                Log.d("SplashFragment", "Movies fetched: ${movies.size}")
-                movies.forEach { movie ->
-                    Log.d("SplashFragment", "Movie: $movie")
+//                movieMainAdapter = MovieMainAdapter(movies)
+                movieMainAdapter = MovieMainAdapter(movies) { movie ->
+                    openDetailFragment(movie)
                 }
-                movieMainAdapter = MovieMainAdapter(movies)
                 binding.popularMovies.adapter = movieMainAdapter
                 binding.todayPickMovies.adapter = movieMainAdapter
             } else {
@@ -77,12 +76,24 @@ class MainFragment : FullScreenFragment(R.layout.fragment_main) {
         // Setup RecyclerView
         val recyclerView: RecyclerView = binding.popularMovies
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.adapter = MovieMainAdapter(emptyList())
-        
+//        recyclerView.adapter = MovieMainAdapter(emptyList())
+        recyclerView.adapter = movieMainAdapter
+
+
         val recyclerView2: RecyclerView = binding.todayPickMovies
         recyclerView2.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, true)
-        recyclerView2.adapter = MovieMainAdapter(emptyList())
+//        recyclerView2.adapter = MovieMainAdapter(emptyList())
+        recyclerView2.adapter = movieMainAdapter
 
+
+    }
+
+    private fun openDetailFragment(movie: Movie) {
+        val fragment = DetailFragment.newInstance(movie)
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_fragment, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onResume() {

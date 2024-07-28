@@ -8,11 +8,11 @@ import com.bumptech.glide.Glide
 import com.example.movie.R
 import com.example.movie.model.Movie
 
-class MovieMainAdapter (private var movies: List<Movie>): RecyclerView.Adapter<MovieMainAdapter.MovieViewHolder>() {
-    fun updateMovies(newMovies: List<Movie>) {
-        movies = newMovies
-        notifyDataSetChanged()
-    }
+class MovieMainAdapter (private var movies: List<Movie>,
+                        private val listener: (Movie) -> Unit
+): RecyclerView.Adapter<MovieMainAdapter.MovieViewHolder>() {
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie_popular, parent, false)
@@ -20,7 +20,9 @@ class MovieMainAdapter (private var movies: List<Movie>): RecyclerView.Adapter<M
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.bind(movies[position])
+//        holder. bind(movies[position])
+        holder.bind(movies[position], listener)
+
     }
 
     override fun getItemCount(): Int {
@@ -32,6 +34,12 @@ class MovieMainAdapter (private var movies: List<Movie>): RecyclerView.Adapter<M
             Glide.with(itemView.context)
                 .load(movie.posterPath)
                 .into(itemView.findViewById(R.id.moviePoster))
+        }
+        fun bind(movie: Movie, listener: (Movie) -> Unit) = with(itemView) {
+            Glide.with(itemView.context)
+                .load(movie.posterPath)
+                .into(itemView.findViewById(R.id.moviePoster))
+            setOnClickListener { listener(movie) }
         }
     }
 }

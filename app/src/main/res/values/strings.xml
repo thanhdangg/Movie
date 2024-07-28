@@ -11,4 +11,6 @@
     <string name="popular">Popular</string>
     <string name="see_all"><![CDATA[See all >]]></string>
     <string name="today_pick">Todays pick</string>
+    <string name="watch_trailer">Watch Trailer</string>
+    <string name="cast">Cast</string>
 </resources>

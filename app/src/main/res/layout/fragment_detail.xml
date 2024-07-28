@@ -13,6 +13,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="400dp">
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -28,6 +29,27 @@
                 >
             </ImageView>
         </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/round_button"
+            android:layout_margin="20dp"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            >
+        </androidx.appcompat.widget.AppCompatButton>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:layout_gravity="top|right"
+            android:layout_margin="20dp"
+            android:background="@drawable/img_me"
+            >
+        </androidx.appcompat.widget.AppCompatButton>
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
@@ -273,13 +295,15 @@
             android:textStyle="bold"
             />
     </LinearLayout>
-    <view class="androidx.appcompat.app.AlertController$RecycleListView"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_cast"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        >
+        android:layout_marginTop="10dp">
 
-    </view>
+    </androidx.recyclerview.widget.RecyclerView>
+
 
 </LinearLayout>
